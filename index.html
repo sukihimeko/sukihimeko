@@ -1,476 +1,511 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suki Himeko | VTuber</title>
-    <!-- Fontes do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suki Himeko ✧ VTuber</title>
 
-    <style>
-        :root {
-            --bg-color: #0b0a0d;
-            --card-bg: rgba(22, 18, 26, 0.75);
-            --red-accent: #d62828;
-            --red-glow: rgba(214, 40, 40, 0.4);
-            --white-accent: #f8f9fa;
-            --text-color: #e0e0e0;
-            --text-dim: #a0a0a0;
-            --border-color: rgba(214, 40, 40, 0.25);
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Comfortaa:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+<style>
+  :root {
+    --bg: #0f0c12;
+    --card: rgba(28, 20, 32, 0.75);
+    --red: #ff3b5c;
+    --red-soft: #ff6b81;
+    --pink: #ff8fab;
+    --white: #fff5f7;
+    --text: #f0e6ea;
+    --dim: #b8a8b0;
+    --glow: rgba(255, 59, 92, 0.45);
+  }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(214, 40, 40, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
-        }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-        /* Ambient Lines Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0, 0, 0, 0.4) 50%);
-            background-size: 100% 4px;
-            z-index: 10;
-            pointer-events: none;
-            opacity: 0.3;
-        }
+  html {
+    scroll-behavior: smooth;
+  }
 
-        /* Header / Navbar */
-        header {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(11, 10, 13, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border-color);
-        }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
 
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--white-accent);
-            text-decoration: none;
-        }
+  /* Background soft glow */
+  .bg {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 10%, rgba(255, 59, 92, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 10% 90%, rgba(255, 140, 170, 0.08) 0%, transparent 50%),
+      #0f0c12;
+    z-index: 0;
+  }
 
-        .logo span {
-            color: var(--red-accent);
-        }
+  /* Floating decorations */
+  .sparkle {
+    position: fixed;
+    color: var(--red-soft);
+    font-size: 1.1rem;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+    animation: floaty 6s ease-in-out infinite;
+  }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+  .sparkle:nth-child(1) { top: 12%; left: 8%; animation-delay: 0s; }
+  .sparkle:nth-child(2) { top: 25%; right: 12%; animation-delay: 1.2s; }
+  .sparkle:nth-child(3) { top: 60%; left: 5%; animation-delay: 2.4s; }
+  .sparkle:nth-child(4) { top: 75%; right: 8%; animation-delay: 0.8s; }
+  .sparkle:nth-child(5) { top: 40%; left: 15%; animation-delay: 3s; }
 
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: 0.3s;
-            position: relative;
-        }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+    50% { transform: translateY(-18px) rotate(15deg); opacity: 0.8; }
+  }
 
-        nav a:hover {
-            color: var(--red-accent);
-        }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 12, 18, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 59, 92, 0.15);
+    z-index: 100;
+  }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0%; height: 2px;
-            background-color: var(--red-accent);
-            transition: 0.3s;
-        }
+  .logo {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
 
-        nav a:hover::after {
-            width: 100%;
-        }
+  .logo span {
+    color: var(--red);
+  }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 120px 8% 60px 8%;
-            position: relative;
-        }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
 
-        .hero-text {
-            max-width: 550px;
-            z-index: 2;
-        }
+  .nav-links a {
+    color: var(--dim);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.25s;
+  }
 
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(214, 40, 40, 0.15);
-            border: 1px solid var(--red-accent);
-            color: var(--red-accent);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+  .nav-links a:hover {
+    color: var(--red-soft);
+  }
 
-        .hero-text h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 40%, var(--red-accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 6% 80px;
+    position: relative;
+    z-index: 2;
+  }
 
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
+  .avatar-box {
+    position: relative;
+    width: min(340px, 80vw);
+    margin-bottom: 40px;
+  }
 
-        .btn-group {
-            display: flex;
-            gap: 15px;
-        }
+  .avatar-ring {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 8px;
+    background: linear-gradient(135deg, var(--red), var(--pink), #fff);
+    box-shadow: 0 0 50px var(--glow), 0 0 100px rgba(255, 59, 92, 0.2);
+    animation: softPulse 4s ease-in-out infinite;
+  }
 
-        .btn {
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
+  @keyframes softPulse {
+    0%, 100% { box-shadow: 0 0 50px var(--glow), 0 0 100px rgba(255, 59, 92, 0.2); }
+    50% { box-shadow: 0 0 70px var(--glow), 0 0 140px rgba(255, 59, 92, 0.3); }
+  }
 
-        .btn-primary {
-            background-color: var(--red-accent);
-            color: #fff;
-            box-shadow: 0 0 20px var(--red-glow);
-        }
+  .avatar-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    background: #111;
+  }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 25px rgba(214, 40, 40, 0.6);
-        }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 59, 92, 0.15);
+    border: 1.5px solid rgba(255, 59, 92, 0.4);
+    color: var(--red-soft);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--white-accent);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+  .hero h1 {
+    font-family: 'Comfortaa', cursive;
+    font-size: clamp(2.8rem, 8vw, 4.2rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
 
-        .btn-secondary:hover {
-            border-color: var(--white-accent);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-3px);
-        }
+  .hero h1 span {
+    color: var(--red);
+  }
 
-        .hero-avatar {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--dim);
+    max-width: 480px;
+    margin: 0 auto 36px;
+  }
 
-        .avatar-frame {
-            position: relative;
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            padding: 10px;
-            background: linear-gradient(135deg, var(--white-accent), var(--red-accent));
-            box-shadow: 0 0 50px var(--red-glow);
-        }
+  .cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            background-color: #000;
-        }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
 
-        /* Section Commons */
-        section {
-            padding: 90px 8%;
-        }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-soft));
+    color: #fff;
+    box-shadow: 0 8px 25px var(--glow);
+  }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+  .btn-primary:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 35px var(--glow);
+  }
 
-        .section-title h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--white-accent);
-            letter-spacing: 1px;
-        }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+  }
 
-        .section-title h2 span {
-            color: var(--red-accent);
-        }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--red-soft);
+    color: var(--red-soft);
+    transform: translateY(-4px);
+  }
 
-        .section-title p {
-            color: var(--text-dim);
-            margin-top: 10px;
-        }
+  /* SECTIONS */
+  section {
+    padding: 90px 6%;
+    position: relative;
+    z-index: 2;
+  }
 
-        /* About Section */
-        .about-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
+  .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
 
-        .info-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-        }
+  .section-title h2 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--white);
+  }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--red-accent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+  .section-title h2 span {
+    color: var(--red);
+  }
 
-        .info-card i {
-            font-size: 2rem;
-            color: var(--red-accent);
-            margin-bottom: 15px;
-        }
+  .section-title p {
+    color: var(--dim);
+    margin-top: 10px;
+  }
 
-        .info-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--white-accent);
-        }
+  /* ABOUT CARDS */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
 
-        .info-card p {
-            color: var(--text-dim);
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
+  .card {
+    background: var(--card);
+    border: 1px solid rgba(255, 59, 92, 0.18);
+    border-radius: 24px;
+    padding: 36px 28px;
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+  }
 
-        /* Social / Links Section */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+  .card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 59, 92, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  }
 
-        .social-btn {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            color: var(--white-accent);
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+  .card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 59, 92, 0.2), rgba(255, 140, 170, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.6rem;
+    color: var(--red-soft);
+  }
 
-        .social-btn i {
-            font-size: 1.8rem;
-            transition: 0.3s;
-        }
+  .card h3 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
 
-        .social-btn.twitch:hover { border-color: #9146FF; color: #9146FF; box-shadow: 0 0 15px rgba(145, 70, 255, 0.3); }
-        .social-btn.youtube:hover { border-color: #FF0000; color: #FF0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
-        .social-btn.twitter:hover { border-color: #1DA1F2; color: #1DA1F2; box-shadow: 0 0 15px rgba(29, 161, 242, 0.3); }
-        .social-btn.discord:hover { border-color: #5865F2; color: #5865F2; box-shadow: 0 0 15px rgba(88, 101, 242, 0.3); }
+  .card p {
+    color: var(--dim);
+    font-size: 0.97rem;
+  }
 
-        .social-btn:hover {
-            transform: translateY(-4px);
-        }
+  /* SOCIAL */
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            background: #060507;
-        }
+  .social-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 20px;
+    background: var(--card);
+    border: 1.5px solid rgba(255, 59, 92, 0.15);
+    border-radius: 22px;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
 
-        footer span {
-            color: var(--red-accent);
-        }
+  .social-btn i {
+    font-size: 2.1rem;
+    transition: transform 0.3s;
+  }
 
-        /* Responsividade */
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 40px;
-            }
+  .social-btn:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: var(--red);
+    box-shadow: 0 15px 35px rgba(255, 59, 92, 0.2);
+  }
 
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
+  .social-btn:hover i {
+    transform: scale(1.2);
+    color: var(--red-soft);
+  }
 
-            .btn-group {
-                justify-content: center;
-            }
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 40px 6%;
+    border-top: 1px solid rgba(255, 59, 92, 0.15);
+    color: var(--dim);
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 2;
+  }
 
-            .avatar-frame {
-                width: 280px;
-                height: 280px;
-            }
+  footer .heart {
+    color: var(--red);
+  }
 
-            nav ul {
-                display: none; /* Simplificado para mobile */
-            }
-        }
-    </style>
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .nav-links {
+      display: none;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+    }
+  }
+</style>
 </head>
 <body>
 
-    <!-- Header / Nav -->
-    <header>
-        <a href="#" class="logo">SUKI <span>HIMEKO</span></a>
-        <nav>
-            <ul>
-                <li><a href="#home">Início</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#links">Redes</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="bg"></div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-text">
-            <span class="badge">VTuber / Live Streamer</span>
-            <h1>Suki Himeko</h1>
-            <p>Seja bem-vindo ao meu domínio. Crio conteúdos de live streaming, jogos, arte e momentos caoticamente divertidos. Acompanhe a transmissão e faça parte da nossa comunidade!</p>
-            <div class="btn-group">
-                <a href="#links" class="btn btn-primary"><i class="fa-solid fa-heart"></i> Me Acompanhe</a>
-                <a href="#about" class="btn btn-secondary"><i class="fa-solid fa-user"></i> Conheça-me</a>
-            </div>
-        </div>
+<!-- floating sparkles -->
+<div class="sparkle">✦</div>
+<div class="sparkle">♡</div>
+<div class="sparkle">✧</div>
+<div class="sparkle">★</div>
+<div class="sparkle">♡</div>
 
-        <div class="hero-avatar">
-            <div class="avatar-frame">
-                <!-- Coloque a imagem da Suki Himeko na mesma pasta com o nome 'avatar.png' -->
-                <img src="suki.png" alt="Suki Himeko VTuber Avatar" class="avatar-img" id="avatarImg">
-            </div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Suki <span>Himeko</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Início</a></li>
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#links">Redes</a></li>
+  </ul>
+</nav>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="section-title">
-            <h2>Sobre <span>Mim</span></h2>
-            <p>Um pouco sobre quem está por trás das transmissões e da criação de conteúdo.</p>
-        </div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="avatar-box">
+    <div class="avatar-ring">
+      <img src="suki.png" alt="Suki Himeko" id="avatarImg">
+    </div>
+  </div>
 
-        <div class="about-container">
-            <div class="info-card">
-                <i class="fa-solid fa-gamepad"></i>
-                <h3>Gaming & Streams</h3>
-                <p>Mergulhada no mundo dos games, trago gameplays de variados estilos, interações ao vivo e boas risadas na live.</p>
-            </div>
+  <div class="badge">
+    <i class="fa-solid fa-heart"></i> VTuber • Streamer
+  </div>
 
-            <div class="info-card">
-                <i class="fa-solid fa-palette"></i>
-                <h3>Arte & Ilustração</h3>
-                <p>Criadora visual apaixonada por design, ilustração digital e desenvolvimento da estética do meu próprio universo.</p>
-            </div>
+  <h1>Suki <span>Himeko</span></h1>
+  <p>
+    Bem-vindo ao meu cantinho! Aqui rola live, jogos, arte e muita bagunça gostosa.  
+    Vem fazer parte dessa comunidade caótica e fofa 💕
+  </p>
 
-            <div class="info-card">
-                <i class="fa-solid fa-ghost"></i>
-                <h3>Gothic Aesthetic</h3>
-                <p>Um visual único dual-tone (p&b + vermelho), vibe misteriosa, chifres e a combinação perfeita de fofura e trevas.</p>
-            </div>
-        </div>
-    </section>
+  <div class="cta">
+    <a href="#links" class="btn btn-primary">
+      <i class="fa-solid fa-heart"></i> Me acompanhe
+    </a>
+    <a href="#about" class="btn btn-secondary">
+      <i class="fa-solid fa-star"></i> Quem sou eu
+    </a>
+  </div>
+</section>
 
-    <!-- Links / Social Section -->
-    <section id="links">
-        <div class="section-title">
-            <h2>Minhas <span>Redes</span></h2>
-            <p>Conecte-se comigo em todas as plataformas abaixo!</p>
-        </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title">
+    <h2>Sobre <span>Mim</span></h2>
+    <p>Um pouquinho de quem está por trás das lives</p>
+  </div>
 
-        <div class="links-grid">
-            <a href="https://twitch.tv/" target="_blank" class="social-btn twitch">
-                <i class="fa-brands fa-twitch"></i>
-                <span>Twitch</span>
-            </a>
+  <div class="about-grid">
+    <div class="card">
+      <div class="card-icon">
+        <i class="fa-solid fa-gamepad"></i>
+      </div>
+      <h3>Gaming & Streams</h3>
+      <p>Gameplays de tudo quanto é estilo, interações ao vivo e risadas que ninguém pediu (mas todo mundo ama).</p>
+    </div>
 
-            <a href="https://youtube.com/" target="_blank" class="social-btn youtube">
-                <i class="fa-brands fa-youtube"></i>
-                <span>YouTube</span>
-            </a>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fa-solid fa-palette"></i>
+      </div>
+      <h3>Arte & Criação</h3>
+      <p>Apaixonada por ilustração digital e por construir o universo visual da Suki um detalhe de cada vez.</p>
+    </div>
 
-            <a href="https://twitter.com/" target="_blank" class="social-btn twitter">
-                <i class="fa-brands fa-x-twitter"></i>
-                <span>X / Twitter</span>
-            </a>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fa-solid fa-moon"></i>
+      </div>
+      <h3>Gothic Cute</h3>
+      <p>Dual-tone, chifres, um pouco de sangue e muita fofura. O contraste perfeito entre trevas e carinho.</p>
+    </div>
+  </div>
+</section>
 
-            <a href="https://discord.gg/" target="_blank" class="social-btn discord">
-                <i class="fa-brands fa-discord"></i>
-                <span>Discord</span>
-            </a>
-        </div>
-    </section>
+<!-- SOCIAL -->
+<section id="links">
+  <div class="section-title">
+    <h2>Minhas <span>Redes</span></h2>
+    <p>Me encontra em qualquer um desses cantinhos!</p>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 <strong>Suki Himeko</strong>. Todos os direitos reservados. Feito com <span>&hearts;</span> para a comunidade.</p>
-    </footer>
+  <div class="social-grid">
+    <a href="https://twitch.tv/" target="_blank" class="social-btn">
+      <i class="fa-brands fa-twitch"></i>
+      Twitch
+    </a>
+    <a href="https://youtube.com/" target="_blank" class="social-btn">
+      <i class="fa-brands fa-youtube"></i>
+      YouTube
+    </a>
+    <a href="https://twitter.com/" target="_blank" class="social-btn">
+      <i class="fa-brands fa-x-twitter"></i>
+      X / Twitter
+    </a>
+    <a href="https://discord.gg/" target="_blank" class="social-btn">
+      <i class="fa-brands fa-discord"></i>
+      Discord
+    </a>
+  </div>
+</section>
 
-    <script>
-        // Fallback caso a imagem local não seja encontrada no mesmo diretório
-        document.getElementById('avatarImg').onerror = function() {
-            // Se o arquivo vts_2026-08-02_12-51-04.jpg não estiver no diretório, avisa no console
-            console.log("Dica: Salve a sua foto do VTuber com o nome indicado no HTML ou coloque-a na mesma pasta do arquivo index.html.");
-        };
-    </script>
+<footer>
+  © 2026 <strong>Suki Himeko</strong> · Feito com <span class="heart">♥</span> pra comunidade
+</footer>
+
+<script>
+  document.getElementById('avatarImg').onerror = function() {
+    console.warn('Coloque o arquivo suki.png na mesma pasta do index.html');
+  };
+</script>
+
 </body>
 </html>
